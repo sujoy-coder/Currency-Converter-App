@@ -3,12 +3,16 @@
 # importing all dependencies
 from flask import Flask,render_template,request
 import requests
+import os
 
 # creating a Flask app and name it 'app'
 app = Flask(__name__)
 
 # api key taken from 'www.alphavantage.co' 
-API_KEY = 'RQM7GIDWT0ZU2WLU'
+if 'API_KEY' in os.environ:
+    API_KEY = os.environ['API_KEY']
+else:
+    API_KEY = 'RQM7GIDWT0ZU2WLU'
 
 # default ('/') route of the application
 @app.route('/',methods=['GET','POST'])
